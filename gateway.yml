@@ -1,0 +1,27 @@
+server:
+  port: 8099
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: micro-crud
+        uri: http://localhost:8080
+        predicates:
+        - Path=/micro-crud/**
+      - id: micro-crud
+        uri: http://localhost:8081
+        predicates:
+        - Path=/micro-operaciones-personal/**
+      - id: micro-crud
+        uri: http://localhost:8082
+        predicates:
+        - Path=/micro-operaciones-empresarial/**

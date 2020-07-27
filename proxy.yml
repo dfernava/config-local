@@ -1,0 +1,23 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+              
+zuul:
+  routes:
+    micro-crud:
+      path: /micro-crud/**
+      serviceId: micro-crud
+    micro-operaciones-personal:
+      path: /micro-operaciones-personal/**
+      serviceId: micro-operaciones-personal
+    micro-operaciones-empresarial:
+      path: /micro-operaciones-empresarial/**
+      serviceId: micro-operaciones-empresarial
