@@ -14,3 +14,23 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+resilience4j:
+  circuitbreaker:
+      configs:
+        default:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            permittedNumberOfCallsInHalfOpenState: 3
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 20
+            eventConsumerBufferSize: 10
+      instances:
+        ms1:
+          base-config: default
+  timelimiter:
+    instances:
+      ms1:
+        timeout-duration: 2s
+        cancel-running-future: true
